@@ -19,9 +19,7 @@ db.on('reconnectedFailed', () => console.error('reconnect failed'));
 // PORT
 const port = process.env.PORT as string;
 app.listen(port, () => {
-	console.log(`
-          Server listening on ${port}
-      `);
+	console.log(`Server listening on ${port}`);
 });
 
 // api
