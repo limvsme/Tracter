@@ -5,7 +5,7 @@
 	"main": "app.ts",
 	"repository": {
 		"type": "git",
-		"url": "https://kdt-gitlab.elice.io/sw_track/class_05/web_2_project/team02/back-end.git"
+		"url": "https://github.com/limvsme/Tracter.git"
 	},
 	"author": "Tractor",
 	"license": "ISC",
