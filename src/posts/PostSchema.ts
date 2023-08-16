@@ -1,4 +1,4 @@
-import { Schema ,model, Document } from "mongoose";
+import { Schema, model, Document } from "mongoose";
 
 export interface IPost extends Document {
     subject: string;
