@@ -6,11 +6,13 @@ import {
 	JoinColumn,
 	CreateDateColumn,
 	UpdateDateColumn,
+	ManyToMany,
+	JoinTable,
 } from 'typeorm';
 
-import { Post } from '../posts/PostEntity';
+import { Article } from '../articles/ArticleEntity';
 import { Place } from '../places/PlaceEntity';
-import { Base } from '../BaseEntity';
+import { Base } from '../entities/BaseEntity';
 
 enum roleEnum {
 	ADMIN = 'admin',
@@ -28,16 +30,13 @@ export class User extends Base {
 	@Column('varchar', { nullable: false })
 	password: string;
 
-	// manytomnay -> like테이블 만들기
-	@Column('simple-array', { nullable: true })
-	@OneToMany(() => Place, place => place.id)
-	@JoinColumn({ name: 'place_id' })
-	likedPlaces: Place[];
+	// @ManyToMany(() => Place, place => place.id)
+	// @JoinColumn({ name: 'place_id' })
+	// likedPlaces: Place[];
 
-	@Column('simple-array', { nullable: true })
-	@OneToMany(() => Post, post => post.id)
-	@JoinColumn({ name: 'id' })
-	likedPosts: Post[];
+	// @ManyToMany(() => Article, article => article.id)
+	// @JoinColumn({ name: 'id' })
+	// likedArticles: Article[];
 
 	@Column('enum', {
 		enum: roleEnum,
@@ -49,5 +48,14 @@ export class User extends Base {
 	isDeleted: boolean;
 
 	@Column('varchar', { nullable: true })
+	@JoinColumn()
 	token: string;
+
+	// @ManyToMany(() => Place)
+	// @JoinTable({ name: 'likes' })
+	// likedPlaces: Place[];
+
+	// @ManyToMany(() => Article)
+	// @JoinTable({ name: 'likes' })
+	// likedArticles: Article[];
 }

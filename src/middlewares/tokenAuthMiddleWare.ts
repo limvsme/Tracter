@@ -1,12 +1,18 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { Request, Response, NextFunction } from 'express';
+import { Auth } from './Auth';
 
 dotenv.config();
 
-export function auth(req: Request, res: Response, next: NextFunction): void {
-	const token = req.headers['authorization'];
+export async function tokenAuth(
+	req: Request,
+	res: Response,
+	next: NextFunction
+): Promise<void> {
 	try {
+		const { token } = req.body;
+
 		if (!token) {
 			throw new Error('토큰이 없습니다.');
 		}

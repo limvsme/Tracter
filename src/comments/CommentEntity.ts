@@ -1,30 +1,17 @@
-import {
-	Entity,
-	PrimaryGeneratedColumn,
-	Column,
-	OneToOne,
-	CreateDateColumn,
-	UpdateDateColumn,
-	JoinColumn,
-	ManyToOne,
-} from 'typeorm';
-import { Post } from '../posts/PostEntity';
+import { Entity, Column, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import { Article } from '../articles/ArticleEntity';
 import { User } from '../users/UserEntity';
+import { Base } from '../entities/BaseEntity';
 
 @Entity('comments')
-export class Comment {
-	@PrimaryGeneratedColumn()
-	id: number;
+export class Comment extends Base {
+	@ManyToOne(() => Article, article => article.comments)
+	@JoinColumn({ name: 'article_id' })
+	articleId: Article;
 
-	@Column('int', { nullable: false })
-	@ManyToOne(() => Post)
-	@JoinColumn({ name: 'post_id' })
-	postId: number;
-
-	@Column('int', { nullable: false })
-	@OneToOne(() => User)
+	@ManyToOne(() => User)
 	@JoinColumn({ name: 'user_id' })
-	writer: number;
+	writer: User;
 
 	@Column('varchar', { nullable: false })
 	comment: string;
