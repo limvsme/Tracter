@@ -1,8 +1,6 @@
-import express, { Request, Response, NextFunction } from "express";
-import { server } from "./src/server";
-import { connectDB } from "./src/db";
-import dotenv from "dotenv";
-import { router } from "./src/router";
+import { server } from './src/server';
+import { connectDB } from './src/db';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -17,18 +15,18 @@ dotenv.config();
 // DB_PORT=3306 (기본값)
 
 connectDB
-  .initialize()
-  .then(async () => {
-    console.log("connecting DB success");
-  })
-  .catch((error) => {
-    console.error("Unable to connect to the database:", error);
-  });
+	.initialize()
+	.then(async () => {
+		console.log('connecting DB success');
+	})
+	.catch(error => {
+		console.error('Unable to connect to the database:', error);
+	});
 
 // PORT
 const port = process.env.PORT;
 
 // run sever
 server.listen(port, () => {
-  console.log(`Server listening on ${port}`);
+	console.log(`Server listening on ${port}`);
 });
